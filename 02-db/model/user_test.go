@@ -13,3 +13,13 @@ func TestUser_Save(t *testing.T) {
 		return
 	}
 }
+
+func TestUser_GetById(t *testing.T) {
+	user := User{Id: 1}
+	err := user.GetById()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(user)
+}

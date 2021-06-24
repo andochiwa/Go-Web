@@ -20,3 +20,16 @@ func (user *User) Save() error {
 	}
 	return nil
 }
+
+func (user *User) GetById() error {
+	sql := "select id, username, email from users where id = ?"
+
+	row := utils.Db.QueryRow(sql, user.Id)
+
+	err := row.Scan(&user.Id, &user.Username, &user.Email)
+	if err != nil {
+		fmt.Println("error by User.getById()")
+		return err
+	}
+	return nil
+}
