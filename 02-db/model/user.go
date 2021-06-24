@@ -33,3 +33,24 @@ func (user *User) GetById() error {
 	}
 	return nil
 }
+
+func (user *User) GetAll() ([]User, error) {
+	sql := "select id, username, email from users"
+
+	rows, err := utils.Db.Query(sql)
+	if err != nil {
+		fmt.Println("error by User.GetAll() 1")
+		return nil, err
+	}
+	var users []User
+	for rows.Next() {
+		user := User{}
+		err := rows.Scan(&user.Id, &user.Username, &user.Email)
+		if err != nil {
+			fmt.Println("error by User.GetAll() 2")
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, nil
+}

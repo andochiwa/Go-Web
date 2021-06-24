@@ -23,3 +23,13 @@ func TestUser_GetById(t *testing.T) {
 	}
 	fmt.Println(user)
 }
+
+func TestUser_GetAll(t *testing.T) {
+	user := User{}
+	users, err := user.GetAll()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(users)
+}
